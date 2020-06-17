@@ -4,6 +4,9 @@
 #define INC_GRADEBOOK_H_
 
 
+#include <cstddef>
+
+
 class GradeBook {
  public:
   /* May or may not be required depending on how you manage memory. You may
@@ -11,9 +14,14 @@ class GradeBook {
    */
   GradeBook();
 
+  GradeBook(const GradeBook& that);  // copy constructor
+
   /* Class destructor to free dynamically allocated memory
    */
   ~GradeBook();
+
+  // Assignment operator
+  const GradeBook& operator=(const GradeBook& rhs);
 
   /* Adds a new grade to the gradebook instance, increasing size by 1.
    */

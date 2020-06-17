@@ -2,23 +2,57 @@
 
 #include <inc/gradebook.h>
 
-GradeBook::GradeBook() : size_(0), grades_length_(0) {
-  grades_ = new char[0];
+GradeBook::GradeBook() : size_(0), grades_(nullptr), grades_length_(0) {
+  // empty
 }
 
-GradeBook::~GradeBook() { l
-  delete [] grades_;
+GradeBook::GradeBook(const GradeBook& that) : size_(that.size_),
+                                              grades_(nullptr),
+                                          grades_length_(that.grades_length_) {
+  if (grades_length_ > 0)
+    grades_ = new char[grades_length_];
+
+  for (size_t i = 0; i < size_; ++i)
+    grades_[i] = that.grades_[i];
+}
+
+GradeBook::~GradeBook() {
+  if (grades_)
+    delete [] grades_;
+}
+
+const GradeBook& GradeBook::operator=(const GradeBook& rhs) {
+  if (this == &rhs)
+    return *this;
+
+  if (grades_) {
+    delete [] grades_;
+    grades_ = nullptr;
+  }
+
+  size_ = rhs.size_;
+  grades_length_ = rhs.grades_length_;
+
+  if (grades_length_ > 0)
+    grades_ = new char[grades_length_];
+
+  for (size_t i = 0; i < size_; ++i)
+    grades_[i] = rhs.grades_[i];
+
+  return *this;
 }
 
 
 void GradeBook::Grow() {
   char* new_array = new char[grades_length_ + 1];
 
-  for (size_t i = 0; i < grades_length_; ++i) {
-    new_array[i] = grades_[i];
+  if (grades_) {
+    for (size_t i = 0; i < size_; ++i) {
+      new_array[i] = grades_[i];
+    }
+    delete[] grades_;
   }
 
-  delete[] grades_;
   grades_ = new_array;
   grades_length_ += 1;
 }
@@ -47,7 +81,7 @@ char GradeBook::Get(size_t index) const {
 
 
 const GradeBook GradeBook::Add(const GradeBook& that) const {
-  GradeBook new_book = GradeBook();
+  GradeBook new_book;
 
   for (size_t i = 0; i < size_; ++i)
     new_book.Add(Get(i));
@@ -141,5 +175,21 @@ bool GradeBook::LessThan(const GradeBook& that) const {
 
 
 char GradeBook::operator[](size_t index) const {
-  return grades_[index];
+  return Get(index);
+}
+
+const GradeBook GradeBook::operator+(const GradeBook& that) const {
+  return Add(that);
+}
+
+bool GradeBook::operator==(const GradeBook& that) const {
+  return Equals(that);
+}
+
+bool GradeBook::operator!=(const GradeBook& that) const {
+  return !Equals(that);
+}
+
+bool GradeBook::operator<(const GradeBook& that) const {
+  return LessThan(that);
 }

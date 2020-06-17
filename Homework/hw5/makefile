@@ -2,7 +2,6 @@ cc = g++  # use g++ compiler
 
 flags = -std=c++11  # compile with C++ 11 standard
 flags += -Wall      # compile with all warnings
-flags += -Wunused-const-variable
 flags += -I .
 flags += -g
 
