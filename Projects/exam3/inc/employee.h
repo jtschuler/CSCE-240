@@ -13,7 +13,13 @@
  */
 
 
+#ifndef INC_EMPLOYEE_H_
+#define INC_EMPLOYEE_H_
+
 #include <string>
+
+
+namespace exam3 {
 
 /* The Demographic class provides a base for people in the system. It will be
  * extended by other classes, such as Employee and must be in the exam3
@@ -33,12 +39,17 @@ class Demographic {
   const std::string first_name() const;
   const std::string last_name() const;
   const std::string date_of_birth() const;
+
+ private:
+  std::string first_name_;
+  std::string last_name_;
+  std::string date_of_birth_;
 };
 
 
 /* Employee extends Demographic and must be in the exam3 namespace.
  */
-class Employee {
+class Employee : public Demographic {
  public:
   /* Additional parameter employee_id stored by the Employee class
    */
@@ -60,6 +71,9 @@ class Employee {
    * Calculates and returns the payment based on child class behavior.
    */
   virtual double CalculatePay(double) const = 0;
+
+ private:
+  std::string employee_id_;
 };
 
 /* HourlyEmplyee extends the Employee class and provides the following methods:
@@ -72,7 +86,7 @@ class Employee {
  *     hourly rate based on hours worked.
  * It must be in the exam3 namespace.
  */
-class HourlyEmployee {
+class HourlyEmployee : public Employee {
  public:
   /* Additional parameter hourly_rate is stored privately in HourlyEmployee
    */
@@ -90,6 +104,8 @@ class HourlyEmployee {
    * hours_worked.
    */
   double CalculatePay(double hours_worked) const;
+ private:
+  double hourly_rate_;
 };
 
 
@@ -103,7 +119,7 @@ class HourlyEmployee {
  *   which the salaried employee is paid, e.g. a week is 1/52 of a year ~1.923%.
  * It must be in the exam3 namespace.
  */
-class SalaryEmployee {
+class SalaryEmployee : public Employee {
  public:
   /* Additional parameter salary is stored privately in SalaryEmployee
    */
@@ -121,4 +137,10 @@ class SalaryEmployee {
    * year for which payment is made e.g. a week payment is ~1.923% (1/52).
    */
   double CalculatePay(double annual_percentage) const;
+ private:
+  double salary_;
 };
+
+}  // namespace exam3
+
+#endif  // INC_EMPLOYEE_H_

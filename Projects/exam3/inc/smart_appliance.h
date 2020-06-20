@@ -10,7 +10,15 @@
  *   SmartThermostat::Set: 4 points
  */
 
+
+#ifndef SMART_APPLIANCE_H_
+#define SMART_APPLIANCE_H_
+
+
 #include <string>
+
+
+namespace exam3 {
 
 /* This interface provides an abstract base for the two following classes. It
  * must be in the exam3 namespace.
@@ -90,3 +98,7 @@ class SmartThermostat {
 
   const std::string Set(unsigned int setting);
 };
+
+}  // namespace exam3
+
+#endif  // SMART_APPLIANCE_H_
