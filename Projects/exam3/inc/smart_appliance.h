@@ -11,8 +11,8 @@
  */
 
 
-#ifndef SMART_APPLIANCE_H_
-#define SMART_APPLIANCE_H_
+#ifndef INC_SMART_APPLIANCE_H_
+#define INC_SMART_APPLIANCE_H_
 
 
 #include <string>
@@ -101,4 +101,4 @@ class SmartThermostat {
 
 }  // namespace exam3
 
-#endif  // SMART_APPLIANCE_H_
+#endif  // INC_SMART_APPLIANCE_H_

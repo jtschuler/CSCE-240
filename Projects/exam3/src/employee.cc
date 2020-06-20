@@ -76,7 +76,7 @@ double SalaryEmployee::pay_rate() const {
 }
 
 double SalaryEmployee::CalculatePay(double annual_percentage) const {
-  return salary_ * annual_percentage;
+  return salary_ * 0.01 * annual_percentage;
 }
 
 
