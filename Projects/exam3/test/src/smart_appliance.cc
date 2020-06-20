@@ -37,8 +37,8 @@ int main(int argc, char* argv[]) {
       cout << " Testing SmartLight::Deactivate 2 of 2" << endl;
       appliance = new SmartLight();
       passed = TestSmartApplianceDeactivate(1, appliance, "Light");
-      return passed ? 0 : 1;
       delete appliance;
+      return passed ? 0 : 1;
   } else if (3 < test && test < 9) {
     int i = test - 3;
     cout << " Testing SmartLight::Set " << i << " of 5" << endl;
@@ -80,7 +80,7 @@ int main(int argc, char* argv[]) {
   }
 }
 
-                           
+
 bool TestSmartApplianceActivate(unsigned int test,
                                 SmartAppliance* appliance,
                                 const string& name) {
@@ -152,7 +152,7 @@ bool TestSmartThermostatSet(unsigned int test,
     return (TestSmartApplianceSet(test, 0, 0, "", appliance, "Thermostat"));
   else if (test == 2)
     return (TestSmartApplianceSet(
-        test, 10, 5, "Thermostat set from 46 to 43", appliance, "Thermostat"));
+        test, 10, 18, "Thermostat set from 46 to 51", appliance, "Thermostat"));
   else  // test == 3
     return (TestSmartApplianceSet(
         test, 41, 41, "Thermostat set to 65", appliance, "Thermostat"));

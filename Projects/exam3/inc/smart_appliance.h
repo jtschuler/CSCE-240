@@ -53,7 +53,7 @@ class SmartAppliance {
  *       (5) if setting is 0 and light is on, turns off light and returns
  *           "Light set from on to off"
  */
-class SmartLight {
+class SmartLight : public SmartAppliance {
  public:
   SmartLight();
 
@@ -61,6 +61,9 @@ class SmartLight {
   const std::string Deactivate();
 
   const std::string Set(unsigned int setting);
+ private:
+  bool activated_;
+  bool on_;
 };
 
 
@@ -89,7 +92,7 @@ class SmartLight {
  *       (3) if setting is same as current setting, does nothing and returns
  *           "Thermostat set to <previous setting>"
  */
-class SmartThermostat {
+class SmartThermostat : public SmartAppliance {
  public:
   SmartThermostat();
 
@@ -97,6 +100,9 @@ class SmartThermostat {
   const std::string Deactivate();
 
   const std::string Set(unsigned int setting);
+ private:
+  bool activated_;
+  unsigned int setting_;
 };
 
 }  // namespace exam3
