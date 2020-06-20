@@ -11,6 +11,7 @@ using std::string;
 using std::vector;
 
 using csce240::Stack;
+using csce240::UndoStack;
 
 
 const vector<string>& LoadVector(vector<string>* vector) {
@@ -54,5 +55,19 @@ int main(int argc, char* argv[]) {
   stack = LoadStack(&stack);
   cout << "Test Stack: " << EmptyStack(&stack, &stack_holder) << endl;
 
+  Stack *u_stack = new UndoStack();
+  *u_stack = LoadStack(u_stack);
+  stack_holder = "";
+  cout << "Test UndoStack: " << EmptyStack(u_stack, &stack_holder) << endl;
+
+  stack_holder = "";
+  cout << "Test UndoStack: " << EmptyStack(u_stack, &stack_holder) << endl;
+
+  while(dynamic_cast<UndoStack *>(u_stack)->Undo());
+
+  stack_holder = "";
+  cout << "Test UndoStack: " << EmptyStack(u_stack, &stack_holder) << endl;
+
+  delete u_stack;
   return 0;
 }

@@ -7,9 +7,17 @@
 
 namespace csce240 {
 
-class Queue {
+class Queue : std::list<std::string> {
+ public:
+  bool Empty() const;
+
+  void Push(const std::string& value);
+
+  const std::string Pop();
+
+  const std::string Top() const;
 };
 
 }  // namespace csce240
 
-#endif
+#endif  // INC_QUEUE_H_
