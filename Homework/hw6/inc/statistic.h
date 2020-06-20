@@ -1,9 +1,19 @@
+// Copyright 2020 Jadon T Schuler
+
+
+#ifndef INC_STATISTIC_H_
+#define INC_STATISTIC_H_
+
+
+namespace csce240 {
+
+
 class Statistic {
  public:
   /* Notice this is not a pure virtual function. It is provided to manage any
    * memory a child class may utilize. You may not delete it.
    */
-  virtual ~Statistic();
+  virtual ~Statistic() { /* empty */ }
 
 
   /* Provided by a child class, the child should implement whatever is meant by
@@ -21,3 +31,8 @@ class Statistic {
    */
   virtual double Calculate() const = 0;
 };
+
+}  // namespace csce240
+
+
+#endif  // INC_STATISTIC_H_

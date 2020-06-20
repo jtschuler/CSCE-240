@@ -1,3 +1,5 @@
+// Copyright 2020 Jadon T Schuler
+
 /* This child of the Statistic class should be a concrete class---that is, it
  * should implement both Collect and Calculate methods from the parent class
  * Statistic. I will let you decide how to implement those methods.
@@ -7,17 +9,27 @@
  * intended) you choose.
  */
 
+#ifndef INC_MEAN_H_
+#define INC_MEAN_H_
 
-class Mean {
+
+#include <inc/statistic.h>
+
+
+namespace csce240 {
+
+
+class Mean : public Statistic {
  public:
   /* Default constructor (you may delete if not required).
    */
   Mean();
 
+  // Copy constructor
+  Mean(const Mean& other);
 
-  /* Destructor (you may delete if not required).
-   */
-  ~Mean();
+  // Assignment operator
+  const Mean& operator=(const Mean& other);
 
 
   /* Stores data (datum) such than an average may be calculated.
@@ -29,4 +41,13 @@ class Mean {
   /* Returns the mean of the data from the Collect method.
    */
   double Calculate() const;
+
+ private:
+  double sum_;
+  double num_;
 };
+
+}  // namespace csce240
+
+
+#endif  // INC_MEAN_H_
